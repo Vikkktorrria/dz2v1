@@ -24,9 +24,15 @@ def game(x: int, y: int, mylist: list, alive_or_dead: int):  # реализац�
 
 
 def neighbors(file_field1, temp_field1, field_cols1, field_rows1, temp_field_cols1, temp_field_rows1):  # поиск соседей
+
     for i in range(temp_field_cols1):
         for j in range(temp_field_rows1):
             temp_field1[i][j] = 0  # заполняю вспомогательное поле нулями
+
+    temp_field1[0][0] = file_field[field_cols1 - 1][field_rows1 - 1]  # соседство у угловых элементов
+    temp_field1[temp_field_cols1 - 1][0] = file_field1[0][field_rows1 - 1]
+    temp_field1[0][temp_field_rows1 - 1] = file_field1[field_cols1 - 1][0]
+    temp_field1[temp_field_cols1 - 1][temp_field_rows1 - 1] = file_field1[0][0]
 
     for i in range(field_cols1):
         for j in range(field_rows1):
@@ -73,8 +79,9 @@ for i in range(temp_field_cols):
         temp_field[i][j] = 0
 """ пока заполнено нулями, в дальнейшем в него будет вписываться исходная матрица, а также соседи крайних значений """
 
-print("\nПоколение", gen_number)
-while gen_number > 1:
+
+while gen_number > 1:  # делаем m-1 ходов (т.к. исходная матрица - первое поколение)
+
     temp_field = neighbors(new_field, temp_field, field_cols, field_rows, temp_field_cols, temp_field_rows)
     gen_number -= 1
     for i in range(field_cols):
@@ -85,8 +92,10 @@ while gen_number > 1:
             else:
                 new_field[i][j] = 0
 
+
 file_field = new_field
 
+print("\nПолученная матрица:", )
 for i in range(len(file_field)):
     print(" ", end="")
     for j in range(len(file_field[i])):
