@@ -29,7 +29,7 @@ def neighbors(file_field1, temp_field1, field_cols1, field_rows1, temp_field_col
         for j in range(temp_field_rows1):
             temp_field1[i][j] = 0  # заполняю вспомогательное поле нулями
 
-    temp_field1[0][0] = file_field[field_cols1 - 1][field_rows1 - 1]  # соседство у угловых элементов
+    temp_field1[0][0] = file_field1[field_cols1 - 1][field_rows1 - 1]  # соседство у угловых элементов
     temp_field1[temp_field_cols1 - 1][0] = file_field1[0][field_rows1 - 1]
     temp_field1[0][temp_field_rows1 - 1] = file_field1[field_cols1 - 1][0]
     temp_field1[temp_field_cols1 - 1][temp_field_rows1 - 1] = file_field1[0][0]
