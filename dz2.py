@@ -79,11 +79,8 @@ for i in range(temp_field_cols):
         temp_field[i][j] = 0
 """ пока заполнено нулями, в дальнейшем в него будет вписываться исходная матрица, а также соседи крайних значений """
 
-
-while gen_number > 1:  # делаем m-1 ходов (т.к. исходная матрица - первое поколение)
-
+for cnt in range(gen_number - 1):  # делаем m-1 ходов (т.к. исходная матрица - первое поколение)
     temp_field = neighbors(new_field, temp_field, field_cols, field_rows, temp_field_cols, temp_field_rows)
-    gen_number -= 1
     for i in range(field_cols):
         for j in range(field_rows):
             if game(i + 1, j + 1, temp_field, temp_field[i + 1][j + 1]) == 1:
@@ -91,7 +88,6 @@ while gen_number > 1:  # делаем m-1 ходов (т.к. исходная м
 
             else:
                 new_field[i][j] = 0
-
 
 file_field = new_field
 
